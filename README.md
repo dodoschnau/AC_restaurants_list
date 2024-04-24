@@ -10,11 +10,11 @@ This is a restaurant listing application that allows users to easily browse rest
 > **Node.js v18.15.0**
 ## Installation
 1. Open your terminal and clone the repository :   
-`git clone https://github.com/dodoschnau/AC_restaurants_list.git`
+```git clone https://github.com/dodoschnau/AC_restaurants_list.git```
 2. Change directory :   
-`cd AC_restaurants_list`
+```cd AC_restaurants_list```
 3. Install the required npm packages :   
-`npm install`
+```npm install```
 4. Launch the application :   
-`npm run start`
+```npm run start```
 5. Open your browser and visit http://localhost:3000 to start using the program.
