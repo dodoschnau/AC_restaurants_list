@@ -13,16 +13,16 @@ This is a restaurant listing application that allows users to easily browse rest
 ```
 git clone https://github.com/dodoschnau/AC_restaurants_list.git
 ```
-3. Change directory :   
+2. Change directory :   
 ```
 cd AC_restaurants_list
 ```
-5. Install the required npm packages :   
+3. Install the required npm packages :   
 ```
 npm install
 ```
-7. Launch the application :   
+4. Launch the application :   
 ```
 npm run start
 ```
-9. Open your browser and visit http://localhost:3000 to start using the program.
+5. Open your browser and visit http://localhost:3000 to start using the program.
