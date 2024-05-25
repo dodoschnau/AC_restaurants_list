@@ -13,6 +13,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      name_en: {
+        type: Sequelize.STRING
+      },
       category: {
         type: Sequelize.STRING
       },
