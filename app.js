@@ -4,6 +4,8 @@ const app = express()
 const port = 3000
 const restaurants = require('./public/jsons/restaurants.json').results
 
+const db = require('./models')
+const Restaurant = db.Restaurant
 
 app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
@@ -11,20 +13,24 @@ app.set('views', './views')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.redirect('/restaurants')
+  // res.redirect('/restaurants')
+  res.send('hello world')
 })
 
 app.get('/restaurants', (req, res) => {
-  const keyword = req.query.keyword?.trim()
-  const matchedRestaurants = keyword ? restaurants.filter((store) => 
-    Object.values(store).some((content) => {
-      if (typeof content === 'string') {
-        return content.toLowerCase().includes(keyword.toLowerCase())
-      }
-      return false
-    })
-  ) : restaurants
-  res.render('index', { restaurants: matchedRestaurants, keyword })
+  // const keyword = req.query.keyword?.trim()
+  // const matchedRestaurants = keyword ? restaurants.filter((store) => 
+  //   Object.values(store).some((content) => {
+  //     if (typeof content === 'string') {
+  //       return content.toLowerCase().includes(keyword.toLowerCase())
+  //     }
+  //     return false
+  //   })
+  // ) : restaurants
+  // res.render('index', { restaurants: matchedRestaurants, keyword })
+  return Restaurant.findAll()
+    .then((restaurants) => res.send({ restaurants }))
+    .catch((err) => console.log(err))
 })
 
 app.get('/restaurant/:id', (req, res) => {
