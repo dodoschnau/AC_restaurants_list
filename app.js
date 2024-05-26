@@ -2,7 +2,6 @@ const express = require('express')
 const { engine } = require('express-handlebars')
 const app = express()
 const port = 3000
-const restaurants = require('./public/jsons/restaurants.json').results
 
 const db = require('./models')
 const Restaurant = db.Restaurant
@@ -18,18 +17,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/restaurants', (req, res) => {
-  // const keyword = req.query.keyword?.trim()
-  // const matchedRestaurants = keyword ? restaurants.filter((store) => 
-  //   Object.values(store).some((content) => {
-  //     if (typeof content === 'string') {
-  //       return content.toLowerCase().includes(keyword.toLowerCase())
-  //     }
-  //     return false
-  //   })
-  // ) : restaurants
-  // res.render('index', { restaurants: matchedRestaurants, keyword })
-  return Restaurant.findAll()
-    .then((restaurants) => res.send({ restaurants }))
+  const keyword = req.query.keyword?.trim()
+
+  return Restaurant.findAll({
+    attributes: [`id`, `image`, `name`, `category`, `rating`],
+    raw: true
+  })
+
+    .then((restaurants) => {
+      const matchedRestaurants = keyword ? restaurants.filter((store) =>
+        Object.values(store).some((content) => {
+          if (typeof content === 'string') {
+            return content.toLowerCase().includes(keyword.toLowerCase())
+          }
+          return false
+        })
+      ) : restaurants
+      res.render('index', { restaurants: matchedRestaurants, keyword })
+    })
+
     .catch((err) => console.log(err))
 })
 
