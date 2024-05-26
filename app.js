@@ -41,8 +41,12 @@ app.get('/restaurants', (req, res) => {
 
 app.get('/restaurant/:id', (req, res) => {
   const id = req.params.id
-  const restaurant = restaurants.find((store) => store.id.toString() === id)
-  res.render('detail', { restaurant: restaurant })
+  return Restaurant.findByPk(id, {
+    attributes: [`id`, `name`, `category`, `location`, `googlemap`, `phone`, `description`, `image`],
+    raw: true
+  })
+    .then((restaurant) => res.render('detail', { restaurant }))
+    .catch((err) => console.log(err))
 })
 
 app.listen(port, () => {
