@@ -9,11 +9,12 @@ const Restaurant = db.Restaurant
 app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', './views')
+
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  // res.redirect('/restaurants')
-  res.send('hello world')
+  res.redirect('/restaurants')
 })
 
 app.get('/restaurants', (req, res) => {
@@ -39,7 +40,12 @@ app.get('/restaurants', (req, res) => {
     .catch((err) => console.log(err))
 })
 
-app.get('/restaurant/:id', (req, res) => {
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+
+app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findByPk(id, {
     attributes: [`id`, `name`, `category`, `location`, `googlemap`, `phone`, `description`, `image`],
@@ -47,6 +53,22 @@ app.get('/restaurant/:id', (req, res) => {
   })
     .then((restaurant) => res.render('detail', { restaurant }))
     .catch((err) => console.log(err))
+})
+
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const googlemap = req.body.googlemap
+  const rating = req.body.rating
+  const description = req.body.description
+
+  return Restaurant.create({ name, name_en, category, image, location, phone, googlemap, rating, description })
+    .then(() => { res.redirect('/restaurants') })
+    .catch((err) => { console.log(err) })
 })
 
 app.listen(port, () => {

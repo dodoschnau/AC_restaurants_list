@@ -1,0 +1,72 @@
+<div class="container">
+
+  <h1 class="m-4">Create a Restaurant</h1>
+
+  <form action="/restaurants" method="post">
+
+    <div class="form-row d-flex mb-3">
+
+      <div class="form-group col me-4">
+        <label for="inputName">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="e.g. 沙巴巴中東美食" name="name" required>
+      </div>
+
+      <div class="form-group col">
+        <label for="categorySelect">Category</label>
+        <select class="form-control" id="categorySelect" name="category">
+          <option>中東料理</option>
+          <option>日本料理</option>
+          <option>義式餐廳</option>
+          <option>美式</option>
+          <option>酒吧</option>
+          <option>咖啡</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-row d-flex mb-3">
+
+      <div class="form-group col me-4">
+        <label for="inputEnName">English Name</label>
+        <input type="text" class="form-control" id="inputEnName" placeholder="e.g. Sababa Pita Bar" name="name_en">
+      </div>
+
+      <div class="form-group col me-4">
+        <label for="numberRating">Rating</label>
+        <input type="text" class="form-control" id="numberRating" pattern="[1-4](\.[0-9])|5\.0"
+          placeholder="Between 1.0 - 5.0 (e.g. 4.6)" name="rating">
+      </div>
+
+      <div class="form-group col">
+        <label for="inputPhone">Phone Number</label>
+        <input type="text" class="form-control" id="inputPhone" placeholder="e.g. 02 2363 8009" name="phone">
+      </div>
+
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="e.g. 台北市羅斯福路三段 283 巷 17 號" name="location">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="inputImage">Image URL</label>
+      <input type="text" class="form-control" id="inputImage" name="image">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="inputGoogle">Google Map URL</label>
+      <input type="text" class="form-control" id="inputGoogle" name="googlemap">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="inputDescription">Description</label>
+      <textarea type="text" class="form-control" id="inputDescription" rows="4" name="description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+  </form>
+
+</div>
