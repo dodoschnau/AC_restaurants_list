@@ -56,6 +56,14 @@ header {
   border: solid 2px #bc2e0b;
 }
 
+#back-button {
+  padding: 1em 2em;
+  position: relative;
+  left: 10em;
+  border: solid 2px #bc2e0b;
+  font-size: 15px;
+}
+
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
