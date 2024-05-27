@@ -50,6 +50,12 @@ header {
   border-color: #ced4da;
 }
 
+#create-button {
+  margin-left: 20em;
+  padding: 1em 2em;
+  border: solid 2px #bc2e0b;
+}
+
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }

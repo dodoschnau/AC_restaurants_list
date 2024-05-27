@@ -55,6 +55,10 @@ app.get('/restaurants/:id', (req, res) => {
     .catch((err) => console.log(err))
 })
 
+app.get('/restaurants/:id/edit', (req, res) => {
+  res.render('edit')
+})
+
 app.post('/restaurants', (req, res) => {
   const name = req.body.name
   const name_en = req.body.name_en
@@ -69,6 +73,14 @@ app.post('/restaurants', (req, res) => {
   return Restaurant.create({ name, name_en, category, image, location, phone, googlemap, rating, description })
     .then(() => { res.redirect('/restaurants') })
     .catch((err) => { console.log(err) })
+})
+
+app.put('/restaurants/:id', (req, res) => {
+  res.send('Edit')
+})
+
+app.delete('/restaurants', (req, res) => {
+  res.send('Delete')
 })
 
 app.listen(port, () => {
