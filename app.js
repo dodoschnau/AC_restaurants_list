@@ -5,6 +5,7 @@ const app = express()
 const port = 3000
 
 const db = require('./models')
+const { where } = require('sequelize')
 const Restaurant = db.Restaurant
 
 app.engine('.hbs', engine({
@@ -107,8 +108,10 @@ app.put('/restaurants/:id', (req, res) => {
     .catch((err) => { console.log(err) })
 })
 
-app.delete('/restaurants', (req, res) => {
-  res.send('Delete')
+app.delete('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.destroy({ where: { id } })
+    .then(() => { res.redirect('/restaurants') })
 })
 
 app.listen(port, () => {

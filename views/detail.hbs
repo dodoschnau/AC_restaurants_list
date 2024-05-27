@@ -21,13 +21,15 @@
           </p>
           <div>
             {{!-- Edit Button --}}
-            <a href="/restaurants/{{restaurant.id}}/edit" class="m-1">
-              <i class="fa-solid fa-pen fa-xl me-5" style="color: #bc2e0b;"></i>
+            <a href="/restaurants/{{restaurant.id}}/edit" class="me-5" style="text-decoration: none">
+              <i class="fa-solid fa-pen fa-xl" style="color: #bc2e0b"></i>
             </a>
             {{!-- Delete Button --}}
-            <a href="" class="m-1">
-              <i class="fa-solid fa-xmark fa-2xl" style="color: #bc2e0b;"></i>
-            </a>
+            <form action="/restaurants/{{restaurant.id}}?_method=DELETE" method="POST" style="display: inline">
+              <button class="bg-transparent border border-0">
+                <i class="fa-solid fa-xmark fa-2xl" style="color: #bc2e0b"></i>
+              </button>
+            </form>
           </div>
 
         </div>
