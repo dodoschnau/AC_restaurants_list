@@ -56,10 +56,16 @@ header {
   border: solid 2px #bc2e0b;
 }
 
-#back-button {
+#detail-back-button {
   padding: 1em 2em;
   position: relative;
   left: 10em;
+  border: solid 2px #bc2e0b;
+  font-size: 15px;
+}
+
+#back-button {
+  padding: 1em 2em;
   border: solid 2px #bc2e0b;
   font-size: 15px;
 }

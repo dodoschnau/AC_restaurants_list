@@ -16,6 +16,7 @@
   </div>
 </div>
 
+{{!-- Create Button --}}
 <a href="/restaurants/new" class="create-button badge rounded-pill" id="create-button">
   <i class="fa-solid fa-plus fa-2xl" style="color: #bc2e0b;"></i>
 </a>
@@ -45,10 +46,13 @@
 
             </div>
           </a>
+
           <div class="card-footer bg-transparent d-flex justify-content-around">
-            <a href="/restaurants/:id/edit" class="m-1">
+            {{!-- Edit Button --}}
+            <a href="/restaurants/{{this.id}}/edit" class="m-1">
               <i class="fa-solid fa-pen fa-xl" style="color: #bc2e0b;"></i>
             </a>
+            {{!-- Delete Button --}}
             <a href="" class="m-1">
               <i class="fa-solid fa-xmark fa-2xl" style="color: #bc2e0b;"></i>
             </a>

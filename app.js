@@ -1,17 +1,26 @@
 const express = require('express')
 const { engine } = require('express-handlebars')
+const methodOverride = require('method-override')
 const app = express()
 const port = 3000
 
 const db = require('./models')
 const Restaurant = db.Restaurant
 
-app.engine('.hbs', engine({ extname: '.hbs' }))
+app.engine('.hbs', engine({
+  extname: '.hbs',
+  // need to check if 'a' is equal to 'b'
+  helpers: {
+    eq: (a, b) => a === b
+  }
+}))
+
 app.set('view engine', '.hbs')
 app.set('views', './views')
 
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
   res.redirect('/restaurants')
@@ -48,7 +57,7 @@ app.get('/restaurants/new', (req, res) => {
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findByPk(id, {
-    attributes: [`id`, `name`, `category`, `location`, `googlemap`, `phone`, `description`, `image`],
+    attributes: [`id`, `name`, `name_en`, `category`, `rating`, `location`, `googlemap`, `phone`, `description`, `image`],
     raw: true
   })
     .then((restaurant) => res.render('detail', { restaurant }))
@@ -56,7 +65,13 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 app.get('/restaurants/:id/edit', (req, res) => {
-  res.render('edit')
+  const id = req.params.id
+  return Restaurant.findByPk(id, {
+    attributes: [`id`, `name`, `name_en`, `category`, `rating`, `location`, `googlemap`, `phone`, `description`, `image`],
+    raw: true
+  })
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch((err) => console.log(err))
 })
 
 app.post('/restaurants', (req, res) => {
@@ -76,7 +91,20 @@ app.post('/restaurants', (req, res) => {
 })
 
 app.put('/restaurants/:id', (req, res) => {
-  res.send('Edit')
+  const id = req.params.id
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const googlemap = req.body.googlemap
+  const rating = req.body.rating
+  const description = req.body.description
+
+  return Restaurant.update({ name, name_en, category, image, location, phone, googlemap, rating, description }, { where: { id } })
+    .then(() => { res.redirect(`/restaurants/${id}`) })
+    .catch((err) => { console.log(err) })
 })
 
 app.delete('/restaurants', (req, res) => {

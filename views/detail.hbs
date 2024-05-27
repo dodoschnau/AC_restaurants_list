@@ -1,7 +1,9 @@
 <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
 <div class="d-flex">
+
+  {{!-- Back Button --}}
   <div>
-    <a href="/restaurants" class="badge rounded-pill" id="back-button" style="color: #bc2e0b;">
+    <a href="/restaurants" class="badge rounded-pill" id="detail-back-button" style="color: #bc2e0b;">
       Back
     </a>
   </div>
@@ -18,9 +20,11 @@
             {{restaurant.category}}
           </p>
           <div>
-            <a href="/restaurants/:id/edit" class="m-1">
+            {{!-- Edit Button --}}
+            <a href="/restaurants/{{restaurant.id}}/edit" class="m-1">
               <i class="fa-solid fa-pen fa-xl me-5" style="color: #bc2e0b;"></i>
             </a>
+            {{!-- Delete Button --}}
             <a href="" class="m-1">
               <i class="fa-solid fa-xmark fa-2xl" style="color: #bc2e0b;"></i>
             </a>

@@ -1,1 +1,88 @@
-<h1>This is an edit page.</h1>
+<div class="container">
+
+
+  <div class="d-flex">
+    <div>
+      <a href="/restaurants/{{restaurant.id}}" class="badge rounded-pill mt-4" id="back-button" style="color: #bc2e0b;">
+        Back
+      </a>
+    </div>
+    <div>
+      <h1 class="m-4">Edit a Restaurant</h1>
+    </div>
+  </div>
+
+  <form action="/restaurants/{{restaurant.id}}?_method=PUT" method="POST">
+
+    <div class="form-row d-flex mb-3">
+
+      <div class="form-group col me-4">
+        <label for="inputName">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="e.g. 沙巴巴中東美食" name="name"
+          value="{{restaurant.name}}" required>
+      </div>
+
+      <div class="form-group col">
+        <label for="categorySelect">Category</label>
+        <select class="form-control" id="categorySelect" name="category">
+          {{!-- if restaurants.category is equal to "中東料理", then this option will be selected. --}}
+          <option value="中東料理" {{#if (eq restaurant.category "中東料理" )}}selected{{/if}}>中東料理</option>
+          <option value="日本料理" {{#if (eq restaurant.category "日本料理" )}}selected{{/if}}>日本料理</option>
+          <option value="義式餐廳" {{#if (eq restaurant.category "義式餐廳" )}}selected{{/if}}>義式餐廳</option>
+          <option value="美式" {{#if (eq restaurant.category "美式" )}}selected{{/if}}>美式</option>
+          <option value="酒吧" {{#if (eq restaurant.category "酒吧" )}}selected{{/if}}>酒吧</option>
+          <option value="咖啡" {{#if (eq restaurant.category "咖啡" )}}selected{{/if}}>咖啡</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-row d-flex mb-3">
+
+      <div class="form-group col me-4">
+        <label for="inputEnName">English Name</label>
+        <input type="text" class="form-control" id="inputEnName" placeholder="e.g. Sababa Pita Bar" name="name_en"
+          value="{{restaurant.name_en}}">
+      </div>
+
+      <div class="form-group col me-4">
+        <label for="numberRating">Rating</label>
+        <input type="text" class="form-control" id="numberRating" pattern="[1-4](\.[0-9])|5\.0"
+          placeholder="Between 1.0 - 5.0 (e.g. 4.6)" name="rating" value="{{restaurant.rating}}">
+      </div>
+
+      <div class="form-group col">
+        <label for="inputPhone">Phone Number</label>
+        <input type="text" class="form-control" id="inputPhone" placeholder="e.g. 02 2363 8009" name="phone"
+          value="{{restaurant.phone}}">
+      </div>
+
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="e.g. 台北市羅斯福路三段 283 巷 17 號" name="location"
+        value="{{restaurant.location}}">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="inputImage">Image URL</label>
+      <input type="text" class="form-control" id="inputImage" name="image" value="{{restaurant.image}}">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="inputGoogle">Google Map URL</label>
+      <input type="text" class="form-control" id="inputGoogle" name="googlemap" value="{{restaurant.googlemap}}">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="inputDescription">Description</label>
+      <textarea type="text" class="form-control" id="inputDescription" rows="4"
+        name="description">{{restaurant.description}}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+  </form>
+
+</div>
