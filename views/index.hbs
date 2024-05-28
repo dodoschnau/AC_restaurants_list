@@ -52,9 +52,11 @@
             <a href="/restaurants/{{this.id}}/edit" class="m-1">
               <i class="fa-solid fa-pen fa-xl" style="color: #bc2e0b"></i>
             </a>
+            {{!-- Detail Button --}}
+            <a href="/restaurants/{{this.id}}" class="badge rounded-pill" id="detail-button">Detail</a>
             {{!-- Delete Button --}}
             <form action="/restaurants/{{this.id}}?_method=DELETE" method="POST" style="display: inline">
-              <button class="bg-transparent border border-0">
+              <button class="bg-transparent border border-0 m-1">
                 <i class="fa-solid fa-xmark fa-2xl" style="color: #bc2e0b"></i>
               </button>
             </form>

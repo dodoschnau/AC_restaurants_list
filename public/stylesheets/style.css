@@ -70,6 +70,14 @@ header {
   font-size: 15px;
 }
 
+#detail-button {
+  padding: 8px;
+  border: solid 2px #bc2e0b;
+  font-size: 15px;
+  color: #bc2e0b;
+  text-decoration: none;
+}
+
 .card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
