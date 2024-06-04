@@ -26,21 +26,13 @@ This is a restaurant listing application that allows users to easily browse rest
     npm install
     ```
 
-4. Create a `.env` file in the root directory of the project and configure your database connection details:
-    ```env
-    DB_HOST=localhost
-    DB_USER=root
-    DB_PASSWORD=yourpassword
-    DB_NAME=restaurant
-    ```
-
-5. Run the database migrations and seeders to set up the initial database structure and data:
+4. Run the database migrations and seeders to set up the initial database structure and data:
     ```
     npx sequelize-cli db:migrate
     npx sequelize-cli db:seed:all
     ```
-6. Launch the application :   
+5. Launch the application :   
     ```
     npm run start
     ```
-7. Open your browser and visit http://localhost:3000 to start using the program.
+6. Open your browser and visit http://localhost:3000 to start using the program.
