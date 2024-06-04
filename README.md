@@ -36,3 +36,7 @@ This is a restaurant listing application that allows users to easily browse rest
     npm run start
     ```
 6. Open your browser and visit http://localhost:3000 to start using the program.
+
+
+## Screenshot
+![alt text](image-2.png)
