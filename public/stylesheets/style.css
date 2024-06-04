@@ -51,9 +51,22 @@ header {
 }
 
 #create-button {
-  margin-left: 20em;
-  padding: 1em 2em;
-  border: solid 2px #bc2e0b;
+  padding: 5px 10px;
+  text-decoration: none;
+  border: solid 3px #bc2e0b;
+  border-radius: 20px;
+}
+
+#create-button:hover {
+  padding: 5px 10px;
+  text-decoration: underline;
+  text-decoration-color: rgba(188, 46, 11, 0.5);
+  border: solid 3px #bc2e0b;
+  border-radius: 20px;
+}
+
+#create-font {
+  font-size: 20px;
 }
 
 #detail-back-button {
