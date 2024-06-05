@@ -39,4 +39,4 @@ This is a restaurant listing application that allows users to easily browse rest
 
 
 ## Screenshot
-![alt text](image-2.png)
+![alt text](./public/screenshots/image-2.png)
