@@ -21,7 +21,7 @@ header {
 }
 
 .search-bar .search-bar-outer {
-  margin: 0 auto;
+  width: 100%;
   max-width: 680px;
   background-color: #fce2cf;
   border-radius: 8px;
@@ -29,6 +29,14 @@ header {
   border: 0;
   margin-top: -60px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+#sort {
+  margin-top: 15px;
+  border: solid 3px #bc2e0b;
+  border-radius: 20px;
+  color: #bc2e0b;
+  font-weight: bold;
 }
 
 .search-bar .search-bar-inner h4 {

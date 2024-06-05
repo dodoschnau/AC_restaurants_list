@@ -29,9 +29,31 @@ app.get('/', (req, res) => {
 
 app.get('/restaurants', (req, res) => {
   const keyword = req.query.keyword?.trim()
+  const sort = req.query.sort
+
+  let order = []
+  switch (sort) {
+    case 'nameAsc':
+      order.push(['name', 'ASC']);
+      break;
+    case 'nameDesc':
+      order.push(['name', 'DESC']);
+      break;
+    case 'category':
+      order.push(['category', 'ASC']);
+      break;
+    case 'location':
+      order.push(['location', 'ASC']);
+      break;
+    default:
+      order.push(['id', 'ASC']);
+      break;
+  }
+
 
   return Restaurant.findAll({
-    attributes: [`id`, `image`, `name`, `category`, `rating`],
+    attributes: ['id', 'image', 'name', 'category', 'rating', 'location'],
+    order,
     raw: true
   })
 
@@ -44,7 +66,7 @@ app.get('/restaurants', (req, res) => {
           return false
         })
       ) : restaurants
-      res.render('index', { restaurants: matchedRestaurants, keyword })
+      res.render('index', { restaurants: matchedRestaurants, keyword, sort })
     })
 
     .catch((err) => console.log(err))
@@ -58,7 +80,7 @@ app.get('/restaurants/new', (req, res) => {
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findByPk(id, {
-    attributes: [`id`, `name`, `name_en`, `category`, `rating`, `location`, `googlemap`, `phone`, `description`, `image`],
+    attributes: ['id', 'name', 'name_en', 'category', 'rating', 'location', 'googlemap', 'phone', 'description', 'image'],
     raw: true
   })
     .then((restaurant) => res.render('detail', { restaurant }))
@@ -68,7 +90,7 @@ app.get('/restaurants/:id', (req, res) => {
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findByPk(id, {
-    attributes: [`id`, `name`, `name_en`, `category`, `rating`, `location`, `googlemap`, `phone`, `description`, `image`],
+    attributes: ['id', 'name', 'name_en', 'category', 'rating', 'location', 'googlemap', 'phone', 'description', 'image'],
     raw: true
   })
     .then((restaurant) => res.render('edit', { restaurant }))
