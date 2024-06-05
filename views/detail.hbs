@@ -8,12 +8,16 @@
     <div class="ms-5 badge fs-3" style="border: 3px solid #bc2e0b; border-radius: 20px; color: #bc2e0b">{{message}}
     </div>
     {{/if}}
+    {{#if error}}
+    <div class="ms-5 badge fs-3" style="border: 3px solid #bc2e0b; border-radius: 20px; color: #bc2e0b">{{error}}
+    </div>
+    {{/if}}
 
     {{!-- Back Button --}}
     <a href="/restaurants" class="badge rounded-pill" id="detail-back-button" style="color: #bc2e0b;">
       Back
     </a>
-    
+
   </div>
 
   <div class="container">
