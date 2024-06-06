@@ -10,6 +10,11 @@ const router = require('./routes')
 const messageHandler = require('./middlewares/message-handler.js')
 const errorHandler = require('./middlewares/error-handler.js')
 
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config()
+}
+console.log('env', process.env.NODE_ENV)
+
 app.engine('.hbs', engine({
   extname: '.hbs',
   // need to check if 'a' is equal to 'b'
@@ -26,7 +31,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.use(session({
-  secret: 'ThisIsSecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }))

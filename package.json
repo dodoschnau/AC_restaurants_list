@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "connect-flash": "^0.1.1",
+    "dotenv": "^16.0.3",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "express-session": "^1.17.3",
