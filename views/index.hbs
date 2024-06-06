@@ -27,12 +27,7 @@
 </form>
 
 {{!-- flash message --}}
-{{#if message}}
-<div class="ms-5 badge fs-3" style="border: 3px solid #bc2e0b; border-radius: 20px; color: #bc2e0b">{{message}}</div>
-{{/if}}
-{{#if error}}
-<div class="ms-5 badge fs-3" style="border: 3px solid #bc2e0b; border-radius: 20px; color: #bc2e0b">{{error}}</div>
-{{/if}}
+{{> message}}
 
 <!-- restaurant list -->
 <div class="container mt-5">

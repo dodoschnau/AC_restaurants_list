@@ -7,6 +7,9 @@ const app = express()
 const port = 3000
 const router = require('./routes')
 
+const messageHandler = require('./middlewares/message-handler.js')
+const errorHandler = require('./middlewares/error-handler.js')
+
 app.engine('.hbs', engine({
   extname: '.hbs',
   // need to check if 'a' is equal to 'b'
@@ -29,7 +32,11 @@ app.use(session({
 }))
 app.use(flash())
 
+app.use(messageHandler)
+
 app.use(router)
+
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`express server is running on http://localhost:${port}`)

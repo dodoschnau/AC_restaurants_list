@@ -5,7 +5,7 @@ const restaurants = require('../public/jsons/restaurants.json')
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Restaurants', restaurants.map(restaurant =>
+    await queryInterface.bulkInsert('Restaurants', restaurants.results.map(restaurant =>
     ({
       name: restaurant.name,
       name_en: restaurant.name_en,

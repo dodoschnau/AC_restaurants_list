@@ -1,9 +1,7 @@
 <div class="container">
 
   {{!-- flash message --}}
-  {{#if error}}
-  <div class="m-5 badge fs-3" style="border: 3px solid #bc2e0b; border-radius: 20px; color: #bc2e0b">{{error}}</div>
-  {{/if}}
+  {{> message}}
 
   <div class="d-flex">
     {{!-- Back Button --}}
