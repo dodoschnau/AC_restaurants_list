@@ -4,9 +4,14 @@ const router = express.Router()
 const db = require('../models')
 const Restaurant = db.Restaurant
 
+const { Op } = require('sequelize')
+
 router.get('/', (req, res, next) => {
   const keyword = req.query.keyword?.trim()
   const sort = req.query.sort
+  const page = parseInt(req.query.page) || 1
+  const limit = 9
+  const offset = (page - 1) * limit
 
   let order = []
   switch (sort) {
@@ -27,22 +32,47 @@ router.get('/', (req, res, next) => {
       break;
   }
 
-  return Restaurant.findAll({
+  let where = {}
+  if (keyword) {
+    where = {
+      [Op.or]: [
+        { name: { [Op.like]: `%${keyword}%` } },
+        { description: { [Op.like]: `%${keyword}%` } },
+        { category: { [Op.like]: `%${keyword}%` } }
+      ]
+    }
+  }
+
+  return Restaurant.findAndCountAll({
     attributes: ['id', 'image', 'name', 'category', 'rating', 'location'],
+    where,
     order,
+    limit,
+    offset,
     raw: true
   })
 
-    .then((restaurants) => {
-      const matchedRestaurants = keyword ? restaurants.filter((store) =>
+    .then(({ count, rows }) => {
+      const matchedRestaurants = keyword ? rows.filter((store) =>
         Object.values(store).some((content) => {
           if (typeof content === 'string') {
             return content.toLowerCase().includes(keyword.toLowerCase())
           }
           return false
         })
-      ) : restaurants
-      res.render('index', { restaurants: matchedRestaurants, keyword, sort })
+      ) : rows
+
+      const totalPages = Math.ceil(count / limit)
+
+      res.render('index', {
+        restaurants: matchedRestaurants,
+        keyword,
+        sort,
+        page,
+        prev: page > 1 ? page - 1 : page,
+        next: page < totalPages ? page + 1 : page,
+        totalPages
+      })
     })
     .catch((error) => {
       error.errorMessage = '資料取得失敗'
