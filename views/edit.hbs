@@ -6,7 +6,8 @@
   <div class="d-flex">
     {{!-- Back Button --}}
     <div>
-      <a href="/restaurants/{{restaurant.id}}" class="badge rounded-pill mt-4" id="back-button" style="color: #bc2e0b;">
+      <a href="/restaurants/{{restaurant.id}}?keyword={{keyword}}&sort={{sort}}&page={{page}}"
+        class="badge rounded-pill mt-4" id="back-button" style="color: #bc2e0b;">
         Back
       </a>
     </div>
@@ -15,7 +16,8 @@
     </div>
   </div>
 
-  <form action="/restaurants/{{restaurant.id}}?_method=PUT" method="POST">
+  <form action="/restaurants/{{restaurant.id}}?_method=PUT&keyword={{keyword}}&sort={{sort}}&page={{page}}"
+    method="POST">
 
     <div class="form-row d-flex mb-3">
 
@@ -85,7 +87,9 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
-
+    <input type="hidden" name="page" value="{{next}}">
+    <input type="hidden" name="keyword" value="{{keyword}}">
+    <input type="hidden" name="sort" value="{{sort}}">
   </form>
 
 </div>

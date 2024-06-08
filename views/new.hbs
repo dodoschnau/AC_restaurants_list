@@ -4,14 +4,19 @@
   {{> message}}
 
   <div class="d-flex">
+
+    {{!-- Back Button --}}
     <div>
-      <a href="/restaurants" class="badge rounded-pill mt-4" id="back-button" style="color: #bc2e0b;">
+      <a href="/restaurants?keyword={{keyword}}&sort={{sort}}&page={{page}}" class="badge rounded-pill mt-4"
+        id="back-button" style="color: #bc2e0b;">
         Back
       </a>
     </div>
+
     <div>
       <h1 class="m-4">Create a Restaurant</h1>
     </div>
+
   </div>
 
 

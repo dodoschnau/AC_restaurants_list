@@ -1,3 +1,8 @@
+{{!-- Create Button --}}
+<a href="/restaurants/new?keyword={{keyword}}&sort={{sort}}&page={{page}}" id="create-button">
+  <div id="create-font" style="color: #bc2e0b;">Create</div>
+</a>
+
 <!-- search bar -->
 <form action="/restaurants" method="GET">
   <div class="container search-bar d-flex justify-content-around">
@@ -37,7 +42,8 @@
         {{#each restaurants}}
 
         <div class="card col-3 me-1 mb-5">
-          <a href="/restaurants/{{this.id}}" class="text-secondary">
+          <a href="/restaurants/{{this.id}}?keyword={{../keyword}}&sort={{../sort}}&page={{../page}}"
+            class="text-secondary">
             <img class="card-img-top mt-3" src="{{this.image}}" alt="">
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{this.name}}</h6>
@@ -56,16 +62,23 @@
 
           <div class="card-footer bg-transparent d-flex justify-content-around">
             {{!-- Edit Button --}}
-            <a href="/restaurants/{{this.id}}/edit" class="m-1">
+            <a href="/restaurants/{{this.id}}/edit?keyword={{../keyword}}&sort={{../sort}}&page={{../page}}"
+              class="m-1">
               <i class="fa-solid fa-pen fa-xl" style="color: #bc2e0b"></i>
             </a>
             {{!-- Detail Button --}}
-            <a href="/restaurants/{{this.id}}" class="badge rounded-pill" id="detail-button">Detail</a>
+            <a href="/restaurants/{{this.id}}?_method=DELETE&keyword={{../keyword}}&sort={{../sort}}&page={{../page}}"
+              class="badge rounded-pill" id="detail-button">Detail</a>
             {{!-- Delete Button --}}
-            <form action="/restaurants/{{this.id}}?_method=DELETE" method="POST" style="display: inline">
+            <form
+              action="/restaurants/{{this.id}}?_method=DELETE&keyword={{../keyword}}&sort={{../sort}}&page={{../page}}"
+              method="POST" style="display: inline">
               <button class="bg-transparent border border-0 m-1">
                 <i class="fa-solid fa-xmark fa-2xl" style="color: #bc2e0b"></i>
               </button>
+              <input type="hidden" name="keyword" value="{{keyword}}">
+              <input type="hidden" name="sort" value="{{sort}}">
+              <input type="hidden" name="page" value="{{page}}">
             </form>
           </div>
 

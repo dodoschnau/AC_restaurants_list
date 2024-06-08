@@ -59,6 +59,9 @@ header {
 }
 
 #create-button {
+  position: absolute;
+  top: 5px;
+  right: 40px;
   padding: 5px 10px;
   text-decoration: none;
   border: solid 3px #bc2e0b;
@@ -66,6 +69,9 @@ header {
 }
 
 #create-button:hover {
+  position: absolute;
+  top: 5px;
+  right: 40px;
   padding: 5px 10px;
   text-decoration: underline;
   text-decoration-color: rgba(188, 46, 11, 0.5);

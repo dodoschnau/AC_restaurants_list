@@ -7,7 +7,7 @@ const Restaurant = db.Restaurant
 const { Op } = require('sequelize')
 
 router.get('/', (req, res, next) => {
-  const keyword = req.query.keyword?.trim()
+  const keyword = req.query.keyword?.trim().toLowerCase() || ''
   const sort = req.query.sort
   const page = parseInt(req.query.page) || 1
   const limit = 9
@@ -53,19 +53,11 @@ router.get('/', (req, res, next) => {
   })
 
     .then(({ count, rows }) => {
-      const matchedRestaurants = keyword ? rows.filter((store) =>
-        Object.values(store).some((content) => {
-          if (typeof content === 'string') {
-            return content.toLowerCase().includes(keyword.toLowerCase())
-          }
-          return false
-        })
-      ) : rows
 
       const totalPages = Math.ceil(count / limit)
 
       res.render('index', {
-        restaurants: matchedRestaurants,
+        restaurants: rows,
         keyword,
         sort,
         page,
@@ -81,17 +73,25 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/new', (req, res) => {
-  res.render('new')
+  const { keyword, sort, page } = req.query
+  return res.render('new', { keyword, sort, page })
 })
 
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id
+  const { keyword, sort, page } = req.query
+
   return Restaurant.findByPk(id, {
     attributes: ['id', 'name', 'name_en', 'category', 'rating', 'location', 'googlemap', 'phone', 'description', 'image'],
     raw: true
   })
-    .then((restaurant) => res.render('detail', { restaurant }))
+    .then((restaurant) => res.render('detail', {
+      restaurant,
+      sort,
+      keyword,
+      page
+    }))
     .catch((error) => {
       error.errorMessage = '資料取得失敗'
       next(error)
@@ -100,11 +100,18 @@ router.get('/:id', (req, res, next) => {
 
 router.get('/:id/edit', (req, res, next) => {
   const id = req.params.id
+  const { keyword, sort, page } = req.query
+
   return Restaurant.findByPk(id, {
     attributes: ['id', 'name', 'name_en', 'category', 'rating', 'location', 'googlemap', 'phone', 'description', 'image'],
     raw: true
   })
-    .then((restaurant) => res.render('edit', { restaurant }))
+    .then((restaurant) => res.render('edit', {
+      restaurant,
+      sort,
+      keyword,
+      page
+    }))
     .catch((error) => {
       error.errorMessage = '資料取得失敗'
       next(error)
@@ -112,15 +119,7 @@ router.get('/:id/edit', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const googlemap = req.body.googlemap
-  const rating = req.body.rating
-  const description = req.body.description
+  const { name, name_en, category, image, location, phone, googlemap, rating, description } = req.body
 
   return Restaurant.create({ name, name_en, category, image, location, phone, googlemap, rating, description })
     .then(() => {
@@ -135,20 +134,13 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   const id = req.params.id
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const googlemap = req.body.googlemap
-  const rating = req.body.rating
-  const description = req.body.description
+  const { name, name_en, category, image, location, phone, googlemap, rating, description } = req.body
+  const { keyword, sort, page } = req.query
 
   return Restaurant.update({ name, name_en, category, image, location, phone, googlemap, rating, description }, { where: { id } })
     .then(() => {
       req.flash('success', '編輯成功！')
-      return res.redirect(`/restaurants/${id}`)
+      return res.redirect(`/restaurants/${id}?keyword=${keyword}&sort=${sort}&page=${page}`)
     })
     .catch((error) => {
       error.errorMessage = '編輯失敗:('
@@ -158,10 +150,12 @@ router.put('/:id', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id
+  const { keyword, sort, page } = req.query
+
   return Restaurant.destroy({ where: { id } })
     .then(() => {
       req.flash('success', '刪除成功！')
-      return res.redirect('/restaurants')
+      return res.redirect(`/restaurants?keyword=${keyword}&sort=${sort}&page=${page}`)
     })
     .catch((error) => {
       error.errorMessage = '刪除失敗:('
