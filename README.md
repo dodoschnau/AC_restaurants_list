@@ -17,10 +17,12 @@ This is a restaurant listing application that allows users to easily browse rest
     ```sh
     git clone https://github.com/dodoschnau/AC_restaurants_list.git
     ```
+
 2. Change directory :   
     ```sh
     cd AC_restaurants_list
     ```
+
 3. Install the required npm packages :   
     ```sh
     npm install
@@ -33,16 +35,23 @@ This is a restaurant listing application that allows users to easily browse rest
     cp .env.example .env
     ```
 
-5. Run the database migrations and seeders to set up the initial database structure and data:
+5. Create the database in MySQL:
+    ```sh
+    CREATE DATABASE restaurant
+    ```
+    `Note: Make sure the MySQL server connection settings match those in config/config.json.`
+
+6. Run the database migrations and seeders to set up the initial database structure and data:
     ```sh
     npx sequelize-cli db:migrate
     npx sequelize-cli db:seed:all
     ```
-6. Launch the application :   
+
+7. Launch the application :   
     ```sh
     npm run start
     ```
-7. Open your browser and visit http://localhost:3000 to start using the program.
+8. Open your browser and visit http://localhost:3000 to start using the program.
 
 ## Development
 
