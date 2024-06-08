@@ -14,29 +14,43 @@ This is a restaurant listing application that allows users to easily browse rest
 > **MySQL v8.0.37**
 ## Installation
 1. Open your terminal and clone the repository :   
-    ```
+    ```sh
     git clone https://github.com/dodoschnau/AC_restaurants_list.git
     ```
 2. Change directory :   
-    ```
+    ```sh
     cd AC_restaurants_list
     ```
 3. Install the required npm packages :   
-    ```
+    ```sh
     npm install
     ```
 
-4. Run the database migrations and seeders to set up the initial database structure and data:
+4. Set up your environment variables :
+
+    Create a `.env` file based on the `.env.example` file and fill in your own values:
+    ```sh
+    cp .env.example .env
     ```
+
+5. Run the database migrations and seeders to set up the initial database structure and data:
+    ```sh
     npx sequelize-cli db:migrate
     npx sequelize-cli db:seed:all
     ```
-5. Launch the application :   
-    ```
+6. Launch the application :   
+    ```sh
     npm run start
     ```
-6. Open your browser and visit http://localhost:3000 to start using the program.
+7. Open your browser and visit http://localhost:3000 to start using the program.
+
+## Development
+
+To run the application in development mode with `nodemon` and `cross-env`, use the following command:
+```sh
+npm run dev:dev
+```
 
 
 ## Screenshot
-![alt text](./public/screenshots/image-2.png)
+![alt text](./public/screenshots/image-3.png)
