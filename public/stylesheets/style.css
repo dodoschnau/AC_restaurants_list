@@ -66,33 +66,30 @@ header {
 }
 
 #create-button {
-  position: absolute;
-  right: 200px;
-  padding: 5px 10px;
-  margin-top: 15px;
-  text-decoration: none;
-  border: solid 3px #bc2e0b;
-  border-radius: 20px;
+  margin-top: auto;
   color: #bc2e0b;
-  float: right;
-}
-
-#create-button:hover {
-  position: absolute;
-  right: 200px;
-  padding: 5px 10px;
-  margin-top: 15px;
-  text-decoration: underline;
-  text-decoration-color: rgba(188, 46, 11, 0.5);
-  border: solid 3px #bc2e0b;
-  border-radius: 20px;
-  color: #bc2e0b;
-  float: right;
 }
 
 #create-font {
+  padding: 5px 10px;
+  border: solid 3px #bc2e0b;
+  border-radius: 20px;
+  color: #bc2e0b;
+  text-decoration: none;
   font-size: 20px;
 }
+
+#create-font:hover {
+  padding: 5px 10px;
+  border: solid 3px #bc2e0b;
+  border-radius: 20px;
+  color: #bc2e0b;
+  text-decoration: none;
+  font-size: 20px;
+  text-decoration: underline;
+  text-decoration-color: rgba(188, 46, 11, 0.5);
+}
+
 
 #detail-back-button {
   padding: 1em 2em;

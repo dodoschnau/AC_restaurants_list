@@ -1,37 +1,52 @@
 {{> navbar}}
 
-{{!-- Create Button --}}
-<a href="/restaurants/new?keyword={{keyword}}&sort={{sort}}&page={{page}}" id="create-button">
-  <div id="create-font">Create</div>
-</a>
+<div class="row-container">
+  <div class="row">
 
-<!-- search bar -->
-<form action="/restaurants" method="GET">
-  <div class="container search-bar d-flex justify-content-around">
-    <div class="search-bar-outer">
-      <div class="search-bar-inner">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            value="{{keyword}}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+    <!-- search bar -->
+    <form action="/restaurants" method="GET" class="d-flex col-9">
+      <div class="col-10 me-5">
+        <div class="container search-bar d-flex justify-content-end">
+          <div class="search-bar-outer">
+            <div class="search-bar-inner">
+              <h4 class="mb-2">尋找餐廳：</h4>
+              <div class="input-group">
+                <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類"
+                  aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
+                <div class="input-group-append">
+                  <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {{!-- sort --}}
+      <div class="col-1">
+        <div id="sort-form">
+          <select class="form-select" name="sort" id="sort" onchange="this.form.submit()">
+            <option value="">Sort</option>
+            <option value="nameAsc" {{#if (eq sort 'nameAsc' )}}selected{{/if}}>A -> Z</option>
+            <option value="nameDesc" {{#if (eq sort 'nameDesc' )}}selected{{/if}}>Z -> A</option>
+            <option value="category" {{#if (eq sort 'category' )}}selected{{/if}}>類別</option>
+            <option value="location" {{#if (eq sort 'location' )}}selected{{/if}}>地區</option>
+          </select>
+        </div>
+      </div>
+    </form>
+
+    {{!-- Create Button --}}
+    <div class="col-3" id="create-button">
+      <a href="/restaurants/new?keyword={{keyword}}&sort={{sort}}&page={{page}}" id="create-font">
+        Create
+      </a>
     </div>
-    {{!-- sort --}}
-    <div id="sort-form">
-      <select class="form-select" name="sort" id="sort" onchange="this.form.submit()">
-        <option value="">Sort</option>
-        <option value="nameAsc" {{#if (eq sort 'nameAsc' )}}selected{{/if}}>A -> Z</option>
-        <option value="nameDesc" {{#if (eq sort 'nameDesc' )}}selected{{/if}}>Z -> A</option>
-        <option value="category" {{#if (eq sort 'category' )}}selected{{/if}}>類別</option>
-        <option value="location" {{#if (eq sort 'location' )}}selected{{/if}}>地區</option>
-      </select>
-    </div>
+
   </div>
-</form>
+</div>
+
+
 
 {{!-- flash message --}}
 {{> message}}
