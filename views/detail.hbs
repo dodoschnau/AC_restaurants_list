@@ -1,3 +1,5 @@
+{{> navbar}}
+
 <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
 <div class="d-flex">
 
@@ -27,8 +29,8 @@
           </p>
           <div>
             {{!-- Edit Button --}}
-            <a href="/restaurants/{{restaurant.id}}/edit?keyword={{keyword}}&sort={{sort}}&page={{page}}"
-              class="me-5" style="text-decoration: none">
+            <a href="/restaurants/{{restaurant.id}}/edit?keyword={{keyword}}&sort={{sort}}&page={{page}}" class="me-5"
+              style="text-decoration: none">
               <i class="fa-solid fa-pen fa-xl" style="color: #bc2e0b"></i>
             </a>
             {{!-- Delete Button --}}

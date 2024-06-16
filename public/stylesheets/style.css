@@ -58,25 +58,36 @@ header {
   border-color: #ced4da;
 }
 
+#logout-button {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  font-size: 18px;
+}
+
 #create-button {
   position: absolute;
-  top: 5px;
-  right: 40px;
+  right: 200px;
   padding: 5px 10px;
+  margin-top: 15px;
   text-decoration: none;
   border: solid 3px #bc2e0b;
   border-radius: 20px;
+  color: #bc2e0b;
+  float: right;
 }
 
 #create-button:hover {
   position: absolute;
-  top: 5px;
-  right: 40px;
+  right: 200px;
   padding: 5px 10px;
+  margin-top: 15px;
   text-decoration: underline;
   text-decoration-color: rgba(188, 46, 11, 0.5);
   border: solid 3px #bc2e0b;
   border-radius: 20px;
+  color: #bc2e0b;
+  float: right;
 }
 
 #create-font {
@@ -118,6 +129,13 @@ header {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.card-header h2 {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
 }
 
 .restaurant-category {
