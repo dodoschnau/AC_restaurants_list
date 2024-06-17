@@ -28,5 +28,9 @@ passport.serializeUser((user, done) => {
   return done(null, { id, name, email })
 })
 
+passport.deserializeUser((user, done) => {
+  return done(null, { id: user.id })
+})
+
 
 module.exports = passport
