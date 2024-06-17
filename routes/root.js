@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 const router = express.Router()
 
 
@@ -15,9 +16,11 @@ router.get('/register', (req, res) => {
 })
 
 // Login
-router.post('/login', (req, res) => {
-  res.send('POST Login')
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/restaurants',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
 
 // Logout
 router.post('/logout', (req, res) => {

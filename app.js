@@ -16,6 +16,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 console.log('env', process.env.NODE_ENV)
 
+const passport = require('./config/passport.js')
+
 app.engine('.hbs', engine({
   extname: '.hbs',
   // need to check if 'a' is equal to 'b'
@@ -37,6 +39,8 @@ app.use(session({
   saveUninitialized: false
 }))
 app.use(flash())
+
+app.use(passport.initialize());
 
 app.use(messageHandler)
 
