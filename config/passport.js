@@ -70,7 +70,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((user, done) => {
-  return done(null, { id: user.id })
+  return done(null, { id: user.id, name: user.name})
 })
 
 

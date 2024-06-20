@@ -22,7 +22,10 @@ app.engine('.hbs', engine({
   extname: '.hbs',
   // need to check if 'a' is equal to 'b'
   helpers: {
-    eq: (a, b) => a === b
+    eq: (a, b) => a === b,
+    defaultName: (name) => {
+      return name || 'noName'
+    }
   }
 }))
 

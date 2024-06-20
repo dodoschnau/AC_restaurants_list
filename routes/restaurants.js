@@ -15,6 +15,7 @@ router.get('/', (req, res, next) => {
   const limit = 9
   const offset = (page - 1) * limit
   const userId = req.user.id
+  const user = req.user
 
   let order = []
   switch (sort) {
@@ -67,7 +68,8 @@ router.get('/', (req, res, next) => {
         page,
         prev: page > 1 ? page - 1 : page,
         next: page < totalPages ? page + 1 : page,
-        totalPages
+        totalPages,
+        user
       })
     })
     .catch((error) => {
@@ -80,7 +82,9 @@ router.get('/', (req, res, next) => {
 // Get Create Page
 router.get('/new', (req, res) => {
   const { keyword, sort, page } = req.query
-  return res.render('new', { keyword, sort, page })
+  const user = req.user
+
+  return res.render('new', { keyword, sort, page, user })
 })
 
 
@@ -89,6 +93,8 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id
   const { keyword, sort, page } = req.query
   const userId = req.user.id
+  const user = req.user
+
 
   return Restaurant.findByPk(id, {
     attributes: ['id', 'name', 'name_en', 'category', 'rating', 'location', 'googlemap', 'phone', 'description', 'image', 'userId'],
@@ -109,7 +115,8 @@ router.get('/:id', (req, res, next) => {
         restaurant,
         sort,
         keyword,
-        page
+        page,
+        user
       })
     })
     .catch((error) => {
@@ -124,6 +131,8 @@ router.get('/:id/edit', (req, res, next) => {
   const id = req.params.id
   const { keyword, sort, page } = req.query
   const userId = req.user.id
+  const user = req.user
+
 
   return Restaurant.findByPk(id, {
     attributes: ['id', 'name', 'name_en', 'category', 'rating', 'location', 'googlemap', 'phone', 'description', 'image', 'userId'],
@@ -144,7 +153,8 @@ router.get('/:id/edit', (req, res, next) => {
         restaurant,
         sort,
         keyword,
-        page
+        page,
+        user
       })
     })
     .catch((error) => {

@@ -65,6 +65,14 @@ header {
   font-size: 18px;
 }
 
+#user-name {
+  position: absolute;
+  top: 5px;
+  right: 150px;
+  font-size: 18px;
+  font-size: 40px;
+}
+
 #create-button {
   margin-top: auto;
   color: #bc2e0b;
