@@ -7,6 +7,8 @@ This is a restaurant listing application that allows users to easily browse rest
 - Link to Google Map :  
   On the restaurant details page, users can click on the restaurant's address, and the system will directly link to the restaurant's location on Google Maps.
 - CRUD function.
+- Users can register their own accounts
+- Users can logout and login with their own account or facebook.
 
 ## Prerequisites
 > **Node.js v18.15.0**
@@ -35,16 +37,16 @@ This is a restaurant listing application that allows users to easily browse rest
     cp .env.example .env
     ```
 
-5. Create the database in MySQL:
+5. Create the database in MySQL :
     ```sh
     CREATE DATABASE restaurant
     ```
     `Note: Make sure the MySQL server connection settings match those in config/config.json.`
 
-6. Run the database migrations and seeders to set up the initial database structure and data:
+6. Run the database migrations and seeders to set up the initial database structure and data :
     ```sh
     npx sequelize-cli db:migrate
-    npx sequelize-cli db:seed:all
+    npm run seed
     ```
 
 7. Launch the application :   
@@ -53,13 +55,35 @@ This is a restaurant listing application that allows users to easily browse rest
     ```
 8. Open your browser and visit http://localhost:3000 to start using the program.
 
+
+## Test account
+The seed data provides the following two sets of accounts for use :
+> Email：user1@example.com / Pwd：12345678
+
+> Email：user2@example.com / Pwd：12345678
+
 ## Development
 
-To run the application in development mode with `nodemon` and `cross-env`, use the following command:
+To run the application in development mod
+e with `nodemon` and `cross-env`, use the following command:
 ```sh
 npm run dev:dev
 ```
 
+## Authentication
+### Passport Local Strategy
+    
+  > Users can register and login with their own email and password.
+
+### Passport Facebook OAuth 2.0
+    
+  > Users can login using their Facebook account.
+
+  `Note` Make sure to set up your Facebook Developer account and configure the app with the necessary credentials in the `.env` file.
+
+
 
 ## Screenshot
-![alt text](./public/screenshots/image-3.png)
+![Home-Page](./public/screenshots/image-1.jpg)
+![Login-Page](./public/screenshots/image-2.jpg)
+![Register-Page](./public/screenshots/image-3.jpg)
