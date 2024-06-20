@@ -7,7 +7,7 @@ const User = db.User
 
 // Register
 router.post('/', (req, res, next) => {
-  const { userName, email, password, confirmPassword } = req.body
+  const { name, email, password, confirmPassword } = req.body
 
   if (!email || !password) {
     req.flash('error', 'email及password為必填！')
@@ -25,7 +25,7 @@ router.post('/', (req, res, next) => {
         return
       }
       return bcrypt.hash(password, 10)
-        .then((hash) => User.create({ userName, email, password: hash }))
+        .then((hash) => User.create({ name, email, password: hash }))
     })
     .then((user) => {
       if (!user) {

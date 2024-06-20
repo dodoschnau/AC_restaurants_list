@@ -12,7 +12,7 @@
           <div>
             <label for="inputName" class="form-label">Name</label>
           </div>
-          <input type="text" class="form-control mb-3" id="inputName" name="userName" placeholder="Enter Username">
+          <input type="text" class="form-control mb-3" id="inputName" name="name" placeholder="Enter Username">
         </div>
         <div>
           <div>
@@ -38,10 +38,22 @@
         <button type="submit" class="btn btn-info mb-3">Register</button>
       </form>
 
-      {{!-- Login Button --}}
-      <div>
-        <span class="me-2">Already have an account?</span>
-        <a href="/login" class="text-danger">Login</a>
+
+      <div class="d-flex justify-content-between">
+
+        {{!-- Login Button --}}
+        <div>
+          <span class="me-2">Already have an account?</span>
+          <a href="/login" class="text-danger">Login</a>
+        </div>
+
+        {{!-- Facebook Login Button --}}
+        <div>
+          <form action="/oauth/login/facebook" method="GET">
+            <button type="submit" class="btn btn-secondary">Facebook Login</button>
+          </form>
+        </div>
+
       </div>
 
     </div>

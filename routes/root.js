@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 router.get('/', (req, res) => {
-  res.redirect('/login')
+  res.redirect('/restaurants')
 })
 
 router.get('/login', (req, res) => {

@@ -26,10 +26,21 @@
         <button type="submit" class="btn btn-info mb-3">Login</button>
       </form>
 
-      {{!-- Register Button --}}
-      <div>
-        <span class="me-2">No account?</span>
-        <a href="/register" class="text-danger">Register</a>
+      <div class="d-flex justify-content-between">
+
+        {{!-- Register Button --}}
+        <div>
+          <span class="me-2">No account?</span>
+          <a href="/register" class="text-danger">Register</a>
+        </div>
+
+        {{!-- Facebook Login Button --}}
+        <div>
+          <form action="/oauth/login/facebook" method="GET">
+            <button type="submit" class="btn btn-secondary">Facebook Login</button>
+          </form>
+        </div>
+
       </div>
     </div>
   </div>
